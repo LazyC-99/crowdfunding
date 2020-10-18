@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>crowdfunding01-admin-parent</artifactId>
+        <groupId>com.lzc.crowd</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>crowdfunding02-admin-webui</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lzc.crowd</groupId>
+            <artifactId>crowdfunding03-admin-component</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- junit 测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- spring 测试 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-jcl</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- JSP 页面使用的依赖 -->
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet.jsp</groupId>-->
+<!--            <artifactId>jsp-api</artifactId>-->
+<!--            <version>2.1.3-b06</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+    </dependencies>
+
+</project>
