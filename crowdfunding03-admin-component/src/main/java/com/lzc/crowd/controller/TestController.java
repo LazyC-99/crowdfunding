@@ -31,8 +31,6 @@ public class TestController {
 
         model.addAttribute("admins",admins);
 
-        //String a =null;
-        //System.out.println(a.length());
         System.out.println(10/0);
         return "target";
     }

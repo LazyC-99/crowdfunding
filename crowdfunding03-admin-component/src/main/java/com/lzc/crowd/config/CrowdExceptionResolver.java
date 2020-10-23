@@ -1,10 +1,10 @@
 package com.lzc.crowd.config;
 
 import com.google.gson.Gson;
-import com.lzc.crowd.constant.CrowdConstant;
+import com.lzc.crowd.exception.AccessForbiddenException;
 import com.lzc.crowd.util.CrowdUtil;
+import com.lzc.crowd.exception.LoginFailedException;
 import com.lzc.crowd.util.ResultEntity;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +15,11 @@ import java.io.IOException;
 
 import static com.lzc.crowd.constant.CrowdConstant.ATTR_NAME_EXCEPTION;
 
-//@ControllerAdvice异常处理器类
+
+/**
+ * 异常处理器类
+ * @author Administrator
+ */
 @ControllerAdvice
 public class CrowdExceptionResolver {
 
@@ -73,10 +77,15 @@ public class CrowdExceptionResolver {
     }
 
 
+    @ExceptionHandler(LoginFailedException.class)
+    public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = "admin-login";
+        return commonResolver(viewName,exception,request,response);
+    }
 
-    @ExceptionHandler(NullPointerException.class)
-    public ModelAndView resolverNullPointException(NullPointerException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String viewName = "system-error";
+    @ExceptionHandler(AccessForbiddenException.class)
+    public ModelAndView resolverAccessForbiddenException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = "admin-login";
         return commonResolver(viewName,exception,request,response);
     }
 }
