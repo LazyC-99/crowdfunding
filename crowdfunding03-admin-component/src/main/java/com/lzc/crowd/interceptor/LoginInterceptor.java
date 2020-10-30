@@ -26,7 +26,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
         //3.判断是否存在
         if(admin==null) {
-            throw new AccessForbiddenException("禁止访问!!");
+            throw new AccessForbiddenException(CrowdConstant.MESSAGE_ACCESS_FORBIDDEN);
         }
 
         return true;

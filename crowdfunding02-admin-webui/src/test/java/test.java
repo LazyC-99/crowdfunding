@@ -1,5 +1,7 @@
 import com.lzc.crowd.entity.Admin;
+import com.lzc.crowd.entity.Role;
 import com.lzc.crowd.mapper.AdminMapper;
+import com.lzc.crowd.mapper.RoleMapper;
 import com.lzc.crowd.service.AdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,22 @@ public class test {
     private AdminMapper adminMapper;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private RoleMapper roleMapper;
+    @Test
+    public void testRole() throws SQLException {
+        for (int i = 0 ; i<30;i++) {
+            Role role = new Role(null,"Role"+i);
+            roleMapper.insert(role);
+        }
+    }
+    @Test
+    public void testAdmin() throws SQLException {
+        for (int i = 0 ; i<100;i++) {
+            Admin admin = new Admin(null,"loginAcct"+i,"userPwd"+i,"userName"+i,"email@qq.com"+i,null);
+            adminService.saveAdmin(admin);
+        }
+    }
     @Test
     public void testSaveAdmin() throws SQLException {
         Admin admin = new Admin(null,"zhangsan","123123","张三","zs@qq.com",null);

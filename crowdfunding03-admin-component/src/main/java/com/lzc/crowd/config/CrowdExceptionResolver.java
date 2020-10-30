@@ -2,6 +2,7 @@ package com.lzc.crowd.config;
 
 import com.google.gson.Gson;
 import com.lzc.crowd.exception.AccessForbiddenException;
+import com.lzc.crowd.exception.LoginAcctNotUniqueException;
 import com.lzc.crowd.util.CrowdUtil;
 import com.lzc.crowd.exception.LoginFailedException;
 import com.lzc.crowd.util.ResultEntity;
@@ -29,7 +30,7 @@ public class CrowdExceptionResolver {
      * @param exception 捕获到的异常类型
      * @param request   当前请求对象
      * @param response  当前响应对象
-     * @return
+     * @return  跳转异常页面
      * @throws IOException
      */
 
@@ -62,30 +63,27 @@ public class CrowdExceptionResolver {
         //9.将Exception对象存入模型
         modelAndView.addObject(ATTR_NAME_EXCEPTION,exception);
 
-
         //10.返回视图
         modelAndView.setViewName(viewName);
 
         return modelAndView;
     }
 
-    //@ExceptionHandler将具体异常类型和方法关联
     @ExceptionHandler(ArithmeticException.class)
     public ModelAndView resolverArithmeticException(ArithmeticException exception,HttpServletRequest request, HttpServletResponse response) throws IOException {
         String viewName = "system-error";
         return commonResolver(viewName,exception,request,response);
     }
 
-
+    @ExceptionHandler(LoginAcctNotUniqueException.class)
+    public ModelAndView resolverLoginAcctNotUniqueException(LoginAcctNotUniqueException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = "system-error";
+        return commonResolver(viewName,exception,request,response);
+    }
     @ExceptionHandler(LoginFailedException.class)
     public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String viewName = "admin-login";
         return commonResolver(viewName,exception,request,response);
     }
 
-    @ExceptionHandler(AccessForbiddenException.class)
-    public ModelAndView resolverAccessForbiddenException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String viewName = "admin-login";
-        return commonResolver(viewName,exception,request,response);
-    }
 }

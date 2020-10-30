@@ -18,6 +18,8 @@ public interface AdminMapper {
 
     List<Admin> selectByExample(AdminExample example);
 
+    List<Admin>  selectAdminByKeyWord (String keyword);
+
     Admin selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Admin record, @Param("example") AdminExample example);

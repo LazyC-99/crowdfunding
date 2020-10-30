@@ -1,6 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html lang="zh-CN">
 <head>
+    <title>
+        用户登录
+    </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,11 +30,11 @@
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 管理员登录</h2>
         <p>${requestScope.exception.message}</p>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" name="loginAcct" placeholder="请输入登录账号" autofocus>
+            <input type="text" class="form-control" name="loginAcct" placeholder="请输入登录账号" autofocus required>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-success has-feedback">
-            <input type="text" class="form-control" name="userPwd" placeholder="请输入登录密码" style="margin-top:10px;">
+            <input type="text" class="form-control" name="userPwd" placeholder="请输入登录密码" style="margin-top:10px;" required>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <button type="submit" class="btn btn-lg btn-success btn-block">登录</button>

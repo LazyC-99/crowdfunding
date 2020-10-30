@@ -13,12 +13,12 @@ public class Admin {
 
     private String email;
 
-    private Date createTime;
+    private String createTime;
 
     public Admin() {
     }
 
-    public Admin(Integer id, String loginAcct, String userName, String userPswd, String email, Date createTime) {
+    public Admin(Integer id, String loginAcct, String userName, String userPswd, String email, String createTime) {
         this.id = id;
         this.loginAcct = loginAcct;
         this.userName = userName;
@@ -67,11 +67,11 @@ public class Admin {
         this.email = email == null ? null : email.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

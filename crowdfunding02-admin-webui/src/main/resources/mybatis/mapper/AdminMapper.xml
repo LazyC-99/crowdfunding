@@ -7,6 +7,7 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_pswd" jdbcType="CHAR" property="userPswd" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,8 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, login_acct, user_name, user_pswd, email
+    id, login_acct, user_name, user_pswd, email,create_time
   </sql>
+  <select id="selectAdminByKeyWord" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_admin
+    where login_acct like concat("%",#{keword},"%")
+    or user_name like concat("%",#{keword},"%")
+    or email like concat("%",#{keword},"%")
+  </select>
   <select id="selectByExample" parameterType="com.lzc.crowd.entity.AdminExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -101,9 +109,9 @@
   </delete>
   <insert id="insert" parameterType="com.lzc.crowd.entity.Admin">
     insert into t_admin (id, login_acct, user_name, 
-      user_pswd, email)
+      user_pswd, email, create_time)
     values (#{id,jdbcType=INTEGER}, #{loginAcct,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{userPswd,jdbcType=CHAR}, #{email,jdbcType=VARCHAR})
+      #{userPswd,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{createTime})
   </insert>
   <insert id="insertSelective" parameterType="com.lzc.crowd.entity.Admin">
     insert into t_admin

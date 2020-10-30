@@ -1,5 +1,6 @@
 package com.lzc.crowd.service;
 
+import com.github.pagehelper.PageInfo;
 import com.lzc.crowd.entity.Admin;
 
 import java.util.List;
@@ -13,10 +14,13 @@ public interface AdminService {
     List<Admin> getAll();
 
     /**
-     * 新增Admin
-     * @param admin admin对象
+     * 分页查询Admin
+     * @param keyword 查询关键字
+     * @param pageNum
+     * @param pageSize
+     * @return
      */
-    void saveAdmin(Admin admin);
+    PageInfo<Admin> getPageInfo(String keyword,Integer pageNum,Integer pageSize);
 
     /**
      * 根据用户名密码查询
@@ -25,4 +29,25 @@ public interface AdminService {
      * @return Admin对象
      */
     Admin getAdminByLoginAcct(String loginAcct, String userPwd);
+
+    /**
+     * 新增Admin
+     * @param admin admin对象
+     */
+    void saveAdmin(Admin admin);
+    /**
+     * 删除Admin
+     * @param adminId 删除的ID
+     */
+    void removeAdmin(Integer adminId);
+    /**
+     * 根据ID查Admin
+     * @param adminId
+     */
+    Admin getAdminById(Integer adminId);
+    /**
+     * 修改Admin
+     * @param admin admin对象
+     */
+    void editAdmin(Admin admin);
 }

@@ -25,6 +25,23 @@
         <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
         <property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml"/>
         <property name="dataSource" ref="DataSource"/>
+
+        <!--配置插件 -->
+        <property name="plugins">
+            <array>
+                <!--配置PageHelper插件 -->
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                            <!--配置数据库方言 -->
+                            <!--配置页码的合理化修正 -->
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!--3.配置MapperScannerConfigurer把每一个mapper接口的实现加到ioc容器 -->

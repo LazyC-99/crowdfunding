@@ -29,6 +29,7 @@
             <props>
                 <!--key指定异常全类名,标签体写视图(要拼接前后缀) -->
                 <prop key="java.lang.Exception">system-error</prop>
+                <prop key="com.lzc.crowd.exception.AccessForbiddenException">admin-login</prop>
             </props>
         </property>
     </bean>
@@ -36,6 +37,8 @@
     <!--配置view-controller,直接把请求地址和视图名称关联起来 -->
     <mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login"/>
     <mvc:view-controller path="/admin/to/main/page.html" view-name="admin-main"/>
+    <mvc:view-controller path="/admin/to/admin/add/page.html" view-name="admin-add"/>
+    <mvc:view-controller path="/admin/to/role/page.html" view-name="admin-role"/>
 
     <!--注册拦截器 -->
     <mvc:interceptors>
