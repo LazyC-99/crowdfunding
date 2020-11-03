@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,8 +26,6 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
     private static final Logger logger = LoggerFactory.getLogger(AdminService.class);
-
-
     @Override
     public void saveAdmin(Admin admin) {
         //1.密码加密
@@ -115,5 +112,13 @@ public class AdminServiceImpl implements AdminService {
             }
         }
 
+    }
+
+    @Override
+    public void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList) {
+        adminMapper.deleteOldRelationship(adminId);
+        if(roleIdList!=null && roleIdList.size()>0){
+            adminMapper.insertNewRelationship(adminId,roleIdList);
+        }
     }
 }

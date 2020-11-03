@@ -1,8 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="GB18030">
 <head>
+    <title>
+        用户管理
+    </title>
     <%@include file="include-head.jsp" %>
     <script src="script/jquery.pagination.js"></script>
     <link rel="stylesheet" href="css/pagination.css">
@@ -59,9 +62,9 @@
                                     <td>${admin.userName}</td>
                                     <td>${admin.email}</td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>
-                                        <a href="/admin/to/admin/edit/page/${admin.id}.html?pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></a>
-                                        <a href="/admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
+                                        <a href="assign/to/assign/role/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></a>
+                                        <a href="admin/to/admin/edit/page/${admin.id}.html?pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></a>
+                                        <a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>

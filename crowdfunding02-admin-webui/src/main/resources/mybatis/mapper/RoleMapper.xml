@@ -66,6 +66,19 @@
   <sql id="Base_Column_List">
     id, role_name
   </sql>
+
+  <select id="selectAssignedRole" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM t_role
+    WHERE id
+    IN (SELECT role_id FROM inner_admin_role WHERE admin_id=#{adminId})
+  </select>
+  <select id="selectUnAssignedRole" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM t_role
+    WHERE id
+    NOT IN (SELECT role_id FROM inner_admin_role WHERE admin_id=#{adminId})
+  </select>
   <select id="selectRoleByKeyWord" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from t_role

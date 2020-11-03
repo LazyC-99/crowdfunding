@@ -50,4 +50,10 @@ public interface AdminService {
      * @param admin admin对象
      */
     void editAdmin(Admin admin);
+    /**
+     * 保存用户角色关系
+     * @param adminId 用户id
+     * @param roleIdList 用户说拥有的角色id集合
+     */
+    void saveAdminRoleRelationship(Integer adminId, List<Integer> roleIdList);
 }
