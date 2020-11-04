@@ -18,7 +18,7 @@ function generateTree() {
                     },
                     data:{
                         key:{
-                            url:"tan90"
+                            url:"tan90" //不存在的请求 禁用点击跳转
                         }
                     }
                 }

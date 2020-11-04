@@ -7,7 +7,9 @@
     </title>
     <%@include file="include-head.jsp" %>
     <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="ztree/zTreeStyle.css">
     <script src="script/jquery.pagination.js"></script>
+    <script src="ztree/jquery.ztree.all-3.5.min.js"></script>
 </head>
 
 <body>
@@ -84,174 +86,9 @@
 <%@include file="modal-role-add.jsp"%>
 <%@include file="modal-role-edit.jsp"%>
 <%@include file="modal-role-confirm.jsp"%>
+<%@include file="modal-role-assign-auth.jsp"%>
 
 </body>
-<script src="script/rolePage.js"></script>
-<script>
-    $(function(){
-        //分页
-        window.pageNum= 1;
-        window.pageSize= 5;
-        window.Keyword= "";
-        generatePage();
-
-        //查询
-        $("#searchBtn").click(function () {
-            window.keyword = $("#keywordInput").val();
-            generatePage();
-        })
-
-        //打开新增角色页面
-        $("#showAddModal").click(function () {
-
-            $("#addModal").modal()
-        })
-
-        //保存角色响应事件
-        $("#saveRoleBtn").click(function () {
-            const roleName =$("#addModal [name=roleName]").val()
-            $.ajax({
-                url:"/role/save.json",
-                type:"post",
-                data:{
-                    "roleName":roleName
-                },
-                dataType:"json"
-            })
-            .done(function (response) {
-                if (response.result=="SUCCESS"){
-                    layer.msg("操作成功!!")
-                    window.pageNum = 99999999
-                    generatePage();
-                }
-                if (response.result=="FAILED"){
-                    layer.msg("操作失败!!+"+response.statusText)
-                }
-            })
-            .fail(function (response) {
-                layer.msg("操作失败!!+"+response.status+" "+response.statusText)
-            })
-            .always(function () {
-                //关闭清理模态框
-                $("#addModal").modal("hide")
-                $("#addModal [name=roleName]").val("")
-
-            })
-        })
-
-        //打开修改模态框(on()函数)
-        //首先找到所有 动态生成 的元素所附着的 静态 元素
-        $("#data-container").on("click",".pencilBtn",function () {
-            $("#editModal").modal()
-
-            //获取回显数据
-            const roleName = $(this).parent().prev().text()
-            window.roleId =  $(this).parent().parent().attr("id")
-            $("#editModal [name=roleName]").val(roleName)
-
-        })
-
-        //修改角色响应事件
-        $("#editRoleBtn").click(function () {
-            $.ajax({
-                url:"/role/edit.json",
-                type:"post",
-                data:{
-                    "id":window.roleId,
-                    "roleName":$("#editModal [name=roleName]").val()
-                },
-                dataType:"json"
-            })
-            .done(function (response) {
-                if (response.result=="SUCCESS"){
-                    layer.msg("操作成功!!")
-                    generatePage();
-                }
-                if (response.result=="FAILED"){
-                    layer.msg("操作失败!!+"+response.statusText)
-                }
-            })
-            .fail(function (response) {
-                layer.msg("操作失败!!+"+response.status+" "+response.statusText)
-            })
-            .always(function () {
-                //关闭模态框
-                $("#editModal").modal("hide")
-
-            })
-
-        })
-
-        //全选
-        $("#summaryBox").click(function () {
-            $(".itemBox").prop("checked",this.checked)
-        })
-        $("#data-container").on("click",".itemBox",function () {
-            //已选中数量
-            const checkedBoxCount = $(".itemBox:checked").length
-            //总数
-            const checkBoxCount = $(".itemBox").length
-
-            $("#summaryBox").prop("checked",checkedBoxCount==checkBoxCount)
-
-        })
-
-
-
-            //打开删除模态框
-        $("#data-container").on("click",".removeBtn",function () {
-            let roleArray = [{//单个删除
-                roleId:$(this).parent().parent().attr("id"),
-                roleName:$(this).parent().prev().text()
-            }]
-            showConfirmModal(roleArray);
-        })
-
-        $("#batchRemoveBtn").click(function () {//批量删除
-            let roleArray = []
-            $(".itemBox:checked").each(function () {
-                roleArray.push({
-                    roleId:$(this).parent().parent().attr("id"),
-                    roleName:$(this).parent().next().text()
-                })
-            })
-            if (roleArray.length==0){
-                layer.msg("请至少选择一个!")
-                return ;
-            }
-            showConfirmModal(roleArray);
-        })
-
-        //执行删除
-        $("#confirmRoleBtn").click(function () {
-            const requestBody = JSON.stringify(window.roleIdArray)
-            $.ajax({
-                url:"/role/remove.json",
-                type:"post",
-                data:requestBody,
-                contentType:"application/json;charset=UTF-8",
-                dataType:"json"
-            })
-            .done(function (response) {
-                if (response.result=="SUCCESS"){
-                    layer.msg("操作成功!!")
-                    generatePage();
-                }
-                if (response.result=="FAILED"){
-                    layer.msg("操作失败!!+"+response.statusText)
-                }
-            })
-            .fail(function (response) {
-                layer.msg("操作失败!!+"+response.status+" "+response.statusText)
-            })
-            .always(function () {
-                //关闭模态框
-                $("#confirmModal").modal("hide")
-
-            })
-        })
-
-    });
-</script>
+<script src="script/my-role.js"></script>
 </html>
 
