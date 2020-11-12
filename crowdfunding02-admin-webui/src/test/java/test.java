@@ -6,6 +6,7 @@ import com.lzc.crowd.service.AdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -14,7 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml","classpath:spring-persist-tx.xml"})
+@ContextConfiguration(locations = {"classpath:spring-persist-mybatis.xml","classpath:spring-persist-tx.xml","classpath:spring-web-mvc.xml"})
 public class test {
     @Autowired
     private DataSource dataSource;
@@ -24,6 +25,7 @@ public class test {
     private AdminService adminService;
     @Autowired
     private RoleMapper roleMapper;
+
     @Test
     public void testRole() throws SQLException {
         for (int i = 0 ; i<30;i++) {

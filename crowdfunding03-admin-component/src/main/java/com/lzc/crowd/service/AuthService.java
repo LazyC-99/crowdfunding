@@ -8,7 +8,9 @@ import java.util.Map;
 public interface AuthService {
     List<Auth> getAllAuth();
 
-    List<Integer> getAuthByRoleId(Integer roleId);
+    List<Integer> getAuthIdByRoleId(Integer roleId);
+
+    List<String> getAuthNameByAdminId(Integer adminId);
 
     void saveRoleAuthRelationship(Map<String, List<Integer>> map);
 }

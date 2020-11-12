@@ -17,4 +17,6 @@ public class CrowdConstant {
     public static final String MESSAGE_STRING_INVALIDATE = "密码不能为空!!";
 
     public static final String MESSAGE_SYSTEM_ERROR_LOGIN_NOT_UNIQUE = "系统错误:登录账号不唯一!";
+
+    public static final String MESSAGE_ACCESS_DENIED = "你不能访问这个资源!!";
 }

@@ -5,6 +5,7 @@ import com.lzc.crowd.entity.Role;
 import com.lzc.crowd.service.RoleService;
 import com.lzc.crowd.util.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +34,8 @@ public class RoleController {
         return ResultEntity.successWithoutData();
     }
 
+
+    @PreAuthorize("hasRole('部长')")
     @RequestMapping("/role/get/role.json")
     public ResultEntity<PageInfo<Role>> getPageInfo(@RequestParam(value = "keyword",defaultValue = "") String keyword, @RequestParam(value = "pageNum",defaultValue = "1")Integer pageNum, @RequestParam(value = "pageSize",defaultValue = "5")Integer pageSize) {
         PageInfo<Role> pageInfo = roleService.getPageInfo(keyword,pageNum,pageSize);

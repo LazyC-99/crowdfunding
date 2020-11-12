@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -25,11 +26,15 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private static final Logger logger = LoggerFactory.getLogger(AdminService.class);
     @Override
     public void saveAdmin(Admin admin) {
         //1.密码加密
-        String pwd = CrowdUtil.md5(admin.getUserPswd());
+        //String pwd = CrowdUtil.md5(admin.getUserPswd());
+        String pwd = bCryptPasswordEncoder.encode(admin.getUserPswd());
         admin.setUserPswd(pwd);
         //2.创建时间
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -79,6 +84,15 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return admin;
+    }
+
+    @Override
+    public Admin getAdminByLoginAcct(String username) {
+        AdminExample adminExample = new AdminExample();
+        AdminExample.Criteria criteria = adminExample.createCriteria();
+        criteria.andLoginAcctEqualTo(username);
+        List<Admin> admins = adminMapper.selectByExample(adminExample);
+        return admins.get(0);
     }
 
     @Override

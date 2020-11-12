@@ -2,6 +2,7 @@ package com.lzc.crowd.service;
 
 import com.github.pagehelper.PageInfo;
 import com.lzc.crowd.entity.Role;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public interface RoleService {
      * @param pageSize
      * @return
      */
+
     PageInfo<Role> getPageInfo(String keyword, Integer pageNum, Integer pageSize);
     /**
      * 增加Role

@@ -5,6 +5,7 @@ import com.lzc.crowd.constant.CrowdConstant;
 import com.lzc.crowd.entity.Admin;
 import com.lzc.crowd.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,12 +52,18 @@ public class AdminController {
         return "admin-user";
     }
 
+    @Deprecated
     @RequestMapping("/admin/do/logout.html")
     public String doLogout (HttpSession session){
         session.invalidate();
         return "redirect:/admin/to/login/page.html";
     }
 
+    /**
+     * 登录由SpringSecurity接管
+     * @return
+     */
+    @Deprecated()
     @RequestMapping("/admin/do/login.html")
     public String doLogin (@RequestParam("loginAcct") String loginAcct, @RequestParam("userPwd") String userPwd, HttpSession session) {
         //返回admin对象则登录成功,账号密码不正确会抛出登录异常

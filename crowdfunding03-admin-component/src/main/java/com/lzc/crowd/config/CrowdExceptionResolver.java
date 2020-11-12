@@ -80,9 +80,9 @@ public class CrowdExceptionResolver {
         String viewName = "system-error";
         return commonResolver(viewName,exception,request,response);
     }
-    @ExceptionHandler(LoginFailedException.class)
-    public ModelAndView resolverLoginFailedException(LoginFailedException exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String viewName = "admin-login";
+    @ExceptionHandler(Exception.class)
+    public ModelAndView resolverException(Exception exception, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String viewName = "system-error";
         return commonResolver(viewName,exception,request,response);
     }
 

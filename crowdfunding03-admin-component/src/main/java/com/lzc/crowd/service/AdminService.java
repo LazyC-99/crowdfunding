@@ -29,7 +29,12 @@ public interface AdminService {
      * @return Admin对象
      */
     Admin getAdminByLoginAcct(String loginAcct, String userPwd);
-
+    /**
+     * 根据用户名查询
+     * @param username 用户名
+     * @return Admin对象
+     */
+    Admin getAdminByLoginAcct(String username);
     /**
      * 新增Admin
      * @param admin admin对象

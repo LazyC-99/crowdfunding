@@ -26,7 +26,9 @@
 
 <div class="container">
 
-    <form action="admin/do/login.html" method="post" class="form-signin" role="form">
+    <form action="security/do/login.html" method="post" class="form-signin" role="form">
+        <p>${SPRING_SECURITY_LAST_EXCEPTION.message}</p>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
         <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i> 管理员登录</h2>
         <p>${requestScope.exception.message}</p>
         <div class="form-group has-success has-feedback">

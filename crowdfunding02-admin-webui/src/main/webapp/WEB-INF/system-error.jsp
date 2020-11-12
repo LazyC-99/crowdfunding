@@ -37,6 +37,7 @@
         <i class="glyphicon glyphicon-log-in"></i> 系统消息
     </h2>
     <h3>错误信息:${requestScope.exception.message}</h3>
+
     <button>返回上一页</button>
 
 </div>

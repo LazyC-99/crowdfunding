@@ -53,7 +53,7 @@ public class AssignController {
     @ResponseBody
     @RequestMapping("/assign/get/role/auth.json")
     public ResultEntity<List<Integer>> getAssignedAuth(@RequestParam("roleId") Integer roleId){
-        List<Integer> roleAuthList = authService.getAuthByRoleId(roleId);
+        List<Integer> roleAuthList = authService.getAuthIdByRoleId(roleId);
         return ResultEntity.successWithData(roleAuthList);
     }
 

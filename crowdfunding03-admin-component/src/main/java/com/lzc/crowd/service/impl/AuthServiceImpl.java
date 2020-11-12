@@ -22,8 +22,13 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public List<Integer> getAuthByRoleId(Integer roleId) {
+    public List<Integer> getAuthIdByRoleId(Integer roleId) {
         return authMapper.selectAuthIdByRoleId(roleId);
+    }
+
+    @Override
+    public List<String> getAuthNameByAdminId(Integer adminId) {
+        return authMapper.selectAuthNameByAdminId(adminId);
     }
 
     @Override

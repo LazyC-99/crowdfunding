@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 登录拦截器
+ * 登录拦截器(已有SpringSecurity接管)
  * @author Administrator
  */
+@Deprecated
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
