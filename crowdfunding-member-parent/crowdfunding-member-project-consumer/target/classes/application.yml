@@ -1,0 +1,22 @@
+server:
+    port: 5000
+spring:
+  application:
+    name: crowd-project
+  redis:
+    host: 101.200.61.176
+  session:
+    store-type: redis
+
+aliyun:
+  oss:
+    endPoint: http://oss-cn-chengdu.aliyuncs.com
+    bucketName: lzc-oss
+    accessKeyId: LTAI4G3dA7qmTqHcfynuBd9y
+    accessKeySecret: Jbp5YX7jEZoA8a0gGzUTXIBvwbwQl
+    bucketDomain: http://lzc-oss.oss-cn-chengdu.aliyuncs.com
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka

@@ -1,5 +1,14 @@
 # Project exclude paths
-/crowdfunding02-admin-webui/target/
-/crowdfunding03-admin-component/target/
-/crowdfunding04-admin-entity/target/
-/crowdfunding05-common-util/target/
+crowdfunding01-admin-parent/crowdfunding02-admin-webui/target/
+crowdfunding01-admin-parent/crowdfunding03-admin-component/target/
+crowdfunding01-admin-parent/crowdfunding04-admin-entity/target/
+crowdfunding01-admin-parent/crowdfunding05-common-util/target/
+crowdfunding-member-parent/crowdfunding-member-authentication-consumer/target/
+crowdfunding-member-parent/crowdfunding-member-common/target/
+crowdfunding-member-parent/crowdfunding-member-eureka/target/
+crowdfunding-member-parent/crowdfunding-member-mysql-provider/target/
+crowdfunding-member-parent/crowdfunding-member-order-consumer/target/
+crowdfunding-member-parent/crowdfunding-member-pay-consumer/target/
+crowdfunding-member-parent/crowdfunding-member-project-consumer/target/
+crowdfunding-member-parent/crowdfunding-member-redis-provider/target/
+crowdfunding-member-parent/crowdfunding-member-zuul/target/
